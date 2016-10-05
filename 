@@ -1,0 +1,20 @@
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch is up-to-date with 'origin/master'.
+#
+# Changes to be committed:
+#	new file:   .env
+#	modified:   .gitignore
+#	modified:   app/Http/Controllers/Auth/LoginController.php
+#	modified:   app/Http/Controllers/Auth/RegisterController.php
+#	modified:   app/Http/Controllers/PostController.php
+#	modified:   app/Http/Middleware/RedirectIfAuthenticated.php
+#	modified:   composer.lock
+#	modified:   config/app.php
+#	modified:   database/migrations/2014_10_12_000000_create_users_table.php
+#	modified:   database/migrations/2016_09_14_164231_create_posts_table.php
+#	modified:   resources/views/posts/show.blade.php
+#	modified:   routes/web.php
+#
