@@ -11,13 +11,7 @@
 |
 */
 
-// Route::get('contact', 'PagesController@getContact');
-//
-// Route::get('about', 'PagesController@getAbout');
-//
-// Route::get('/', 'PagesController@getIndex');
-
-
+Route::get('/', 'PostController@index');
 Route::get('contact', 'PagesController@getContact');
 Route::get('about', 'PagesController@getAbout');
 Route::get('posts', 'PostController@index');
@@ -26,7 +20,3 @@ Route::get('posts', 'PostController@index');
 //Route::post('posts', 'PostController@store');
 
 Route::resource('posts', 'PostController');
-
-Auth::routes();
-
-Route::get('/', 'HomeController@index');

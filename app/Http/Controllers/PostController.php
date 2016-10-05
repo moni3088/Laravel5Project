@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Http\Requests\CreatePostRequest;
-use Illuminate\Http\Request;
+use Request;
 
-use App\Http\Controllers\Controller;
+use Illuminate\Routing\Controller;
 use App\Post;
+use App\User;
+
 
 class PostController extends Controller
 {
@@ -46,10 +49,11 @@ class PostController extends Controller
 
         $post->title = $request->title; /*post'e esanciame title priskiriame is request gauto title reiksme*/
         $post->body = $request->body;
-        $post->author = 'no author';
+        if ()
+        $post->user_id = Auth::id(); //Gets and sets the current active user's id
         $post->save();
 
-        $id = $post->id; //gets the id from the Post object
+        $id = $post->id; //gets and sets the id from the Post object
 
         return redirect()->action(
             'PostController@show', ['id' => $id]
@@ -66,7 +70,10 @@ class PostController extends Controller
     public function show($id)
     {
         $article = Post::findOrFail($id);
-        return view('posts.show', compact('article'));
+        $author = User::where('id', $article->user_id)->first();
+        return view('posts.show')
+            ->with(compact('article'))
+            ->with(compact('author'));
     }
 
     /**
