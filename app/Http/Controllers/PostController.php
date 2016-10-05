@@ -49,7 +49,6 @@ class PostController extends Controller
 
         $post->title = $request->title; /*post'e esanciame title priskiriame is request gauto title reiksme*/
         $post->body = $request->body;
-//        if ()
         $post->user_id = Auth::id(); //Gets and sets the current active user's id
         $post->save();
 
@@ -70,7 +69,7 @@ class PostController extends Controller
     public function show($id)
     {
         $article = Post::findOrFail($id);
-        $author = User::where('id', $article->user_id)->first();
+        $author = User::where('id', $article->user_id)->first()->name; //gets the author's name
         return view('posts.show')
             ->with(compact('article'))
             ->with(compact('author'));
