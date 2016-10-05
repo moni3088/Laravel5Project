@@ -49,7 +49,7 @@ class PostController extends Controller
 
         $post->title = $request->title; /*post'e esanciame title priskiriame is request gauto title reiksme*/
         $post->body = $request->body;
-        if ()
+//        if ()
         $post->user_id = Auth::id(); //Gets and sets the current active user's id
         $post->save();
 
