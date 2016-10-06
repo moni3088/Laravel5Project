@@ -1,3 +1,3 @@
 <hr>
 
-<p class="text-center">Copyright - Zym Ged  - All rights reserved</p>
+<p class="text-center">Copyright - . - All rights reserved</p>
