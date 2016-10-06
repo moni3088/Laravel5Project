@@ -6,7 +6,7 @@ use Auth;
 use App\Http\Requests\CreatePostRequest;
 use Request;
 
-use Illuminate\Routing\Controller;
+
 use App\Post;
 use App\User;
 
@@ -112,6 +112,8 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $articles = Post::find($id);
+        $articles->delete();
+        return redirect()->route('posts.index');
     }
 }
