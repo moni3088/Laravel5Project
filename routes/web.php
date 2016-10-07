@@ -21,6 +21,9 @@ Route::get('about', 'PagesController@getAbout');
 
 Route::resource('posts', 'PostController');
 
+Route::get('profile', 'UserController@edit')->name('profile.edit');
+Route::patch('profile/{id}', 'UserController@update')->name('profile.update');
+
 Auth::routes();
 
 Route::get('/', 'HomeController@index');
