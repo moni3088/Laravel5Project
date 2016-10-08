@@ -14,8 +14,12 @@
 
                     {!!Form::model($user, ['route'=> ['profile.update', $user->id], 'method'=>'PATCH'])!!}
                     <div class="form-group">
-                        {!! Form::label('name', 'Name: ') !!}
-                        {!! Form::text('name', null, ['class' => 'form-control']) !!}
+                        {!! Form::label('nickname', 'Nickname: ') !!}
+                        {!! Form::text('nickname', null, ['class' => 'form-control']) !!}
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('e-mail', 'E-mail: ') !!}
+                        {!! Form::text('email', null, ['class' => 'form-control']) !!}
                     </div>
                     <div class="form-group">
                         {!! Form::label('about', 'About: ') !!}
@@ -26,6 +30,12 @@
 
                     @include('errors.list')
                     {{--{{var_dump($errors)}}--}}
+
+                    @if(Session::has('message'))
+                        <div class="alert alert-success">
+                            {{ Session::get('message') }}
+                        </div>
+                    @endif
                 </div>
             </div>﻿
 

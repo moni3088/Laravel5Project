@@ -11,19 +11,14 @@
 |
 */
 
-//Route::get('/', 'PostController@index');
+Auth::routes();
+
+Route::get('/', 'HomeController@index');
 Route::get('contact', 'PagesController@getContact');
 Route::get('about', 'PagesController@getAbout');
-//Route::get('posts', 'PostController@index');
-//Route::get('posts/create', 'PostController@create');
-//Route::get('posts/{id}', 'PostController@show');
-//Route::post('posts', 'PostController@store');
-
-Route::resource('posts', 'PostController');
 
 Route::get('profile', 'UserController@edit')->name('profile.edit');
 Route::patch('profile/{id}', 'UserController@update')->name('profile.update');
 
-Auth::routes();
+Route::resource('posts', 'PostController');
 
-Route::get('/', 'HomeController@index');

@@ -9,10 +9,10 @@
 
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
-                    <h1>Edit post: {{$article->title}}</h1>
+                    <h1>Edit post: {{$post->title}}</h1>
                     <hr>
 
-                    {!!Form::model($article, ['route'=> ['posts.update',$article->id], 'method'=>'PATCH'])!!}
+                    {!!Form::model($post, ['route'=> ['posts.update',$post->id], 'method'=>'PATCH'])!!}
                         <div class="form-group">
                             {!! Form::label('title', 'Title: ') !!}
                             {!! Form::text('title', null, ['class' => 'form-control']) !!}

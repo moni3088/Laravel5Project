@@ -2,26 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
 use App\Http\Requests\CreatePostRequest;
-use Request;
-
-
 use App\Post;
 use App\User;
-
+use Auth;
+use Request;
 
 class PostController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
-        $articles = Post::all()->sortByDesc('created_at'); //retrieves the model data and sorts it descending by date.
-        return view('posts.index', compact('articles'));
+
+        $posts = Post::all()->sortByDesc('created_at'); //retrieves the model data and sorts it descending by date.
+        return view('posts.index', compact('posts'));
     }
 
     /**
@@ -31,7 +35,6 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
         return view('posts.create');
     }
 
@@ -68,10 +71,10 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $article = Post::findOrFail($id);
-        $author = User::where('id', $article->user_id)->first()->name; //gets the author's name
+        $post = Post::findOrFail($id);
+        $author = User::where('id', $post->user_id)->first()->nickname; //gets the author's nickname
         return view('posts.show')
-            ->with(compact('article'))
+            ->with(compact('post'))
             ->with(compact('author'));
     }
 
@@ -83,9 +86,13 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $article = Post::findOrFail($id);
-
-        return view('posts.edit', compact('article'));
+        $post = Post::findOrFail($id);
+        $user = Auth::user();
+        if ($user->can('update', $post)){
+            return view('posts.edit', compact('post'));
+        } else {
+            return redirect('posts')->with('message', 'You are not authorised for this action');
+        }
     }
 
     /**
@@ -97,11 +104,13 @@ class PostController extends Controller
      */
     public function update(CreatePostRequest $request, $id)
     {
-        $article = Post::findOrFail($id);
+        $post = Post::findOrFail($id);
+        $post->update($request->all());
 
-        $article->update($request->all());
+        return redirect()->action(
+            'PostController@show', ['id' => $id]
+        );
 
-        return redirect('posts');
     }
 
     /**
@@ -112,8 +121,14 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        $articles = Post::find($id);
-        $articles->delete();
-        return redirect()->route('posts.index');
+
+        $user = Auth::user();
+        $post = Post::find($id);
+        if ($user->can('delete', $post)) {
+            $post->delete();
+            return redirect()->route('posts.index');
+        } else {
+            return redirect('posts')->with('message', 'You are not authorised for this action');
+        }
     }
 }

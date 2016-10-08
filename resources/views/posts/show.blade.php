@@ -12,11 +12,11 @@
 
     <div class="row">
         <div class="col-md-8">
-            {!!Form::model($article, ['route'=> ['posts.destroy',$article->id], 'method'=>'DELETE'])!!}
+            {!!Form::model($post, ['route'=> ['posts.destroy',$post->id], 'method'=>'DELETE'])!!}
                 <div class="post">
-                    <h2>{{$article->title}}</h2>
-                    <p class="text-muted">Posted by: <span style="font-style: italic">{{$author}}</span> | Created at: {{$article->created_at}} | Updated at: {{$article->updated_at}}</p>
-                    <p style="word-break: break-all;">{{$article->body}}</p>
+                    <h2>{{$post->title}}</h2>
+                    <p class="text-muted">Posted by: <span style="font-style: italic">{{$author}}</span> | Created at: {{$post->created_at}} | Updated at: {{$post->updated_at}}</p>
+                    <p style="word-break: break-all;">{{$post->body}}</p>
                 </div>
             {!!Form::submit('Delete', ['class'=>'btn btn-danger'])  !!}
             {!! Form::close() !!}

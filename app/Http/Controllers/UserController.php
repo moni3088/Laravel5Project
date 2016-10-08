@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
 use App\User;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -16,11 +22,7 @@ class UserController extends Controller
      */
     public function edit()
     {
-        if (Auth::check()){
-            $id = Auth::User()->id;
-        } else {
-            return redirect('login');
-        }
+        $id = Auth::User()->id;
 
         $user = User::findOrFail($id);
 
@@ -36,15 +38,16 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if (Auth::check()){
-            $user = User::findOrFail($id);
-        } else {
-            return redirect('login');
-        }
+        $user = User::findOrFail($id);
+
+        $this->validate($request, [
+            'nickname' => 'required|min:5|max:15|unique:users,nickname,'.$user->id,
+            'email' => 'unique:users,email,'.$user->id
+        ]);
 
         $user->update($request->all());
 
-        return redirect('profile');
+        return redirect('profile')->withMessage("Your profile has been updated!");
     }
 
     /**
@@ -55,8 +58,10 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $articles = Post::find($id);
-        $articles->delete();
+        //Didn't add the delete profile functionality yet
+        $this->middleware('auth');
+        $user = User::find($id);
+        $user->delete();
         return redirect()->route('profile.edit');
     }
 }

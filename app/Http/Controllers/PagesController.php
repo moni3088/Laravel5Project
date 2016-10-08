@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Auth\Middleware\Authenticate;
 use App\Post;
 
 class PagesController extends Controller
@@ -21,6 +22,7 @@ class PagesController extends Controller
   // }
 
   public function getAbout() {
+    $this->middleware('auth');
     return view('about');
   }
 
