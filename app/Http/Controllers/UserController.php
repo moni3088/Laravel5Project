@@ -15,10 +15,6 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
-//    public function profile(){
-//           return view('profile', array('user'=>Auth::user()));
-//    }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -65,7 +61,7 @@ class UserController extends Controller
                $user->save();
            }
 
-            return redirect('profile')->withMessage("Your profile has been updated!");
+            return redirect('profile')->withMessage("Your picture has been updated!");
     }
 
     /**

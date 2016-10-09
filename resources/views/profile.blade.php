@@ -22,13 +22,14 @@
                             {{--<input type="Submit" class="pull-right btn btn-sm btn-primary">--}}
                         {{--</form>--}}
                     {{--</div>--}}
+
                     {!! Form::open(['route' => 'profile.update_avatar', 'method' => 'POST', 'enctype' => 'multipart/form-data', 'files' => 'true' ]) !!}
                         <div class="form-group">
                             <h1>Edit Profile: {{$user->name}}</h1>
                             <hr>
                             <div class="media">
                                 <div class="media-left">
-                                    <img src="/uploads/avatars/{{$user->avatar}}" class="media-object img-rounded" style="width:210px">
+                                    <img src="/uploads/avatars/{{$user->avatar}}" class="media-object img-circle" style="width:210px">
                                 </div>
                                 <div class="media-body">
                                     {!! Form::label('picture', 'Update profile picture: ') !!}
@@ -38,8 +39,6 @@
                                 </div>
                                 {!! Form::submit('Submit picture', ['class'=>'btn btn-primary btn-md btn-block', 'style' => 'margin-top: 10px;']) !!}
                             </div>
-
-                            {{--{!! Form::file('avatar', null, ['class' => 'form-control']) !!}--}}
                         </div>
                     {!! Form::close() !!}
 
