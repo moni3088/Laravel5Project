@@ -9,6 +9,7 @@
 
                 <div class="panel-body">
                     You are logged in! <a href="/posts">Click here</a>
+                    This is home.blade
                 </div>
             </div>
         </div>
