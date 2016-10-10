@@ -7,9 +7,16 @@ use Illuminate\Http\Request;
 use Auth;
 use App\User;
 use Intervention\Image\Facades\Image;
+use \PDF;
+
+
+
+
+
 
 class UserController extends Controller
 {
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -73,6 +80,22 @@ class UserController extends Controller
         return redirect('profile')->withMessage("No image is selected.");
     }
 
+
+    public function pdf_create(){
+//        $dompdf = new DOMPDF();
+//        $dompdf->set($paper,$orientation);
+//        $dompdf->load_html($html);
+//        $dompdf->render();
+//        $dompdf->stream($filename.".pdf");
+
+        //$pdf = PDF::loadView('profile.edit',$data);
+        //return $pdf->download('invoice.pdf');
+
+        return PDF::loadFile(public_path().'/myfile.html')->save('/path-to/my_stored_file.pdf')->stream('download.pdf');
+
+    }
+
+
     /**
      * Remove the specified resource from storage.
      *
@@ -88,3 +111,8 @@ class UserController extends Controller
         return redirect()->route('profile.edit');
     }
 }
+
+
+
+
+?>
