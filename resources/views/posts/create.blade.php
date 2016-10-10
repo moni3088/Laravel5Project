@@ -10,7 +10,7 @@
                 <div class="col-md-8 col-md-offset-2">
                     <h1>Create New Post</h1>
                     <hr>
-                    {!! Form::open(['action' => 'PostController@store']) !!}
+                    {!! Form::open(['action' => 'PostController@store', 'files' => true]) !!}
 
                     <div class="form-group">
                         {{--Creates the text label for the input--}}
@@ -22,6 +22,11 @@
                     <div class="form-group">
                         {!! Form::label('body', 'Body: ') !!}
                         {!! Form::textarea('body', null, ['class' => 'form-control']) !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('image', 'Add post header image: ') !!}
+                        {!! Form::file('postImg')!!}
                     </div>
 
                     <div class="form-group">

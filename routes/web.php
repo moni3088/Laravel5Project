@@ -21,7 +21,9 @@ Route::get('profile', 'UserController@edit')->name('profile.edit');
 Route::post('profile', 'UserController@update_avatar')->name('profile.update_avatar');
 Route::patch('profile/{id}', 'UserController@update')->name('profile.update');
 
-Route::get('profile', 'UserController@pdf_create')->name('make.pdf');
+//Route::get('profile', 'UserController@pdf_create')->name('make.pdf');
 
 Route::resource('posts', 'PostController');
+Route::get('posts/{id}/delete', 'PostController@deleteImage')->name('posts.imageDelete');
+
 

@@ -10,11 +10,11 @@
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
 
-                    {!! Form::open(['route' => 'profile.update_avatar', 'method' => 'POST', 'enctype' => 'multipart/form-data', 'files' => 'true' ]) !!}
+                    {!! Form::open(['route' => 'profile.update_avatar', 'method' => 'POST', 'files' => true ]) !!}
                     <div class="form-group">
                         <h1>Edit Profile: {{$user->name}}</h1>
                         <hr>
-                        <div class="media">
+                        <div class="media" style="">
                             <div class="media-left ">
                                 <img src="/uploads/avatars/{{$user->avatar}}" class="media-object">
                             </div>
@@ -24,7 +24,7 @@
                                     Browse {!! Form::file('avatar', ['class' => 'btn btn-file', 'style' => 'display:none'])!!}
                                 </label>
                             </div>
-                            {!! Form::submit('Submit picture', ['class'=>'btn btn-primary btn-md btn-block', 'style' => 'margin-top: 10px;']) !!}
+                            {!! Form::submit('Submit picture', ['class'=>'btn btn-primary btn-md btn-block', 'style' => 'margin-top: 15px;']) !!}
                         </div>
                     </div>
                     {!! Form::close() !!}

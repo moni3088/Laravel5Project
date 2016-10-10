@@ -10,10 +10,6 @@ use Intervention\Image\Facades\Image;
 use \PDF;
 
 
-
-
-
-
 class UserController extends Controller
 {
 
@@ -81,7 +77,8 @@ class UserController extends Controller
     }
 
 
-    public function pdf_create(){
+    public function pdf_create()
+    {
 //        $dompdf = new DOMPDF();
 //        $dompdf->set($paper,$orientation);
 //        $dompdf->load_html($html);
@@ -91,10 +88,9 @@ class UserController extends Controller
         //$pdf = PDF::loadView('profile.edit',$data);
         //return $pdf->download('invoice.pdf');
 
-        return PDF::loadFile(public_path().'/myfile.html')->save('/path-to/my_stored_file.pdf')->stream('download.pdf');
+        return PDF::loadFile(public_path() . '/myfile.html')->save('/path-to/my_stored_file.pdf')->stream('download.pdf');
 
     }
-
 
     /**
      * Remove the specified resource from storage.
@@ -111,8 +107,5 @@ class UserController extends Controller
         return redirect()->route('profile.edit');
     }
 }
-
-
-
 
 ?>
