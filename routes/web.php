@@ -18,7 +18,7 @@ Route::get('contact', 'PagesController@getContact');
 Route::get('about', 'PagesController@getAbout');
 
 Route::get('profile', 'UserController@edit')->name('profile.edit');
-Route::post('profile','UserController@update_avatar')->name('profile.update_avatar');
+Route::post('profile', 'UserController@update_avatar')->name('profile.update_avatar');
 Route::patch('profile/{id}', 'UserController@update')->name('profile.update');
 
 Route::resource('posts', 'PostController');

@@ -18,7 +18,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit()
@@ -33,8 +33,8 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -42,32 +42,41 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
         $this->validate($request, [
-            'nickname' => 'required|min:5|max:15|unique:users,nickname,'.$user->id,
-            'email' => 'unique:users,email,'.$user->id
+            'nickname' => 'required|min:5|max:15|unique:users,nickname,' . $user->id,
+            'email' => 'unique:users,email,' . $user->id
         ]);
 
         $user->update($request->all());
 
         return redirect('profile')->withMessage("Your profile has been updated!");
     }
+
     public function update_avatar(Request $request)
     {
-           if($request->hasFile('avatar')){
-               $avatar = $request->file('avatar');
-               $filename = time(). '.' . $avatar->getClientOriginalExtension();
-               Image::make($avatar)->resize(300,300)->save(public_path('/uploads/avatars/' . $filename));
-               $user = Auth::user();
-               $user->avatar = $filename;
-               $user->save();
-           }
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->file('avatar');
+
+            $circle_mask = Image::canvas(500, 500, 'rgba(0, 0, 0, 0)');
+            $circle_mask->circle(500, 250, 250, function ($draw) {
+                $draw->background('#fff');
+            });
+
+            $filename = time() . '.' . 'png';
+            Image::make($avatar)->fit(250)->encode('png')->mask($circle_mask)->save(public_path('/uploads/avatars/' . $filename));
+
+            $user = Auth::user();
+            $user->avatar = $filename;
+            $user->save();
 
             return redirect('profile')->withMessage("Your picture has been updated!");
+        }
+        return redirect('profile')->withMessage("No image is selected.");
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
