@@ -36,7 +36,9 @@
                         <img src="/uploads/PostImages/{{$post->image}}" class="img-rounded img-responsive"
                              style=" padding: 0px 0 20px 0;">
                     @endif
-                    <p style="padding: 0px 0px 20px 5px">{{$post->body}}</p>
+
+                    {{--nl2br() function helps display the paragraph line breaks otherwise line breaks are not displayed--}}
+                    <p style="padding: 0px 0px 20px 5px">{!! nl2br(e($post->body))!!}</p>
                 </div>
             </div>
             {!! Form::close() !!}

@@ -17,6 +17,11 @@
 <link href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway" rel="stylesheet">
 
 <style>
+    body {
+        /*compensates for top-fixed navbar*/
+        padding-top: 50px;
+    }
+
     body, li, p {
         font-family: 'Open Sans', sans-serif;
     }
@@ -30,8 +35,14 @@
         font-size: 3em;
     }
 
-    nav > navbar-default {
-        background-color: #0d3625;
-    }
+    /*.this{*/
+        /*background-color: #d35400;*/
+        /*border-color: transparent;*/
+    /*}*/
+
+    /*.this:hover {*/
+        /*background-color: #c0392b;*/
+        /**/
+    /*}*/
 
 </style>

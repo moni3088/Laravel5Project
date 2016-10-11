@@ -2,6 +2,12 @@
 
 @section('title', "| Profile")
 
+@section('navbuttons')
+    <li><a href="/posts">Home</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/contact">Contact</a></li>
+@endsection
+
 @section('content')
 
     <div class="row">
@@ -60,7 +66,7 @@
                                 {{ Session::get('message') }}
                             </div>
                         @endif
-                     @endif
+                    @endif
                 </div>
             </div>
         </div>
