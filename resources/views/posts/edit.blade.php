@@ -2,6 +2,12 @@
 
 @section('title', '| Create a new blog post')
 
+@section('navbuttons')
+    <li class="active"><a href="/posts">Home</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/contact">Contact</a></li>
+@endsection
+
 @section('content')
 
     <div class="row">

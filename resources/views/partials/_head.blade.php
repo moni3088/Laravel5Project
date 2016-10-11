@@ -27,6 +27,7 @@
 
     h1, h2, h3 {
         font-family: 'Raleway', sans-serif;
+        font-size: 3em;
     }
 
     nav > navbar-default {

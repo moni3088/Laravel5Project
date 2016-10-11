@@ -3,7 +3,7 @@
 @section('title', "| Home")
 
 @section('navbuttons')
-    <li class="active"><a href="/">Home</a></li>
+    <li class="active"><a href="/posts">Home</a></li>
     <li><a href="/about">About</a></li>
     <li><a href="/contact">Contact</a></li>
 @endsection
@@ -23,10 +23,12 @@
                 <p>|{{$post->created_at}}|</p>
                 <p>Updated at:</p>
                 <p>|{{$post->updated_at}}|</p>
-                {!!Form::submit('Delete', ['class'=>'btn btn-danger btn-block'])  !!}
-                <button type="button" class="btn btn-default btn-block"
-                        onclick="window.location='{{ route("posts.edit", $post->id)}}'">EDIT
-                </button>
+                @if($user->can('update', $post))
+                    {!!Form::submit('Delete', ['class'=>'btn btn-danger btn-block'])  !!}
+                    <button type="button" class="btn btn-default btn-block"
+                            onclick="window.location='{{ route("posts.edit", $post->id)}}'">EDIT
+                    </button>
+                @endif
             </div>
             <div class="col-md-10" style=" ">
                 <div class="post">

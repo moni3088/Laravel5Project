@@ -76,11 +76,13 @@ class PostController extends Controller
      */
     public function show($id)
     {
+        $user = Auth::user();
         $post = Post::findOrFail($id);
         $author = User::where('id', $post->user_id)->first()->nickname; //gets the author's nickname
 
         return view('posts.show')
             ->with(compact('post'))
+            ->with(compact('user'))
             ->with(compact('author'));
     }
 
@@ -138,6 +140,10 @@ class PostController extends Controller
         $user = Auth::user();
         $post = Post::find($id);
         if ($user->can('delete', $post)) {
+            if ($post->image != null) {
+                $filename = $post->image;
+                Storage::delete('/public/uploads/PostImages/' . $filename);
+            }
             $post->delete();
             return redirect()->route('posts.index');
         } else {
@@ -151,18 +157,24 @@ class PostController extends Controller
      */
     public function deleteImage($id)
     {
+        $user = Auth::user();
         $post = Post::find($id);
-        if ($post->image != null) {
-            $filename = $post->image;
-            Storage::delete('/public/uploads/PostImages/' . $filename);
-            $post->image = null;
-            $post->save();
+
+        if ($user->can('delete', $post)) {
+            if ($post->image != null) {
+                $filename = $post->image;
+                Storage::delete('/public/uploads/PostImages/' . $filename);
+                $post->image = null;
+                $post->save();
+                return redirect()->action(
+                    'PostController@show', ['id' => $id]
+                );
+            }
             return redirect()->action(
-                'PostController@show', ['id' => $id]
+                'PostController@edit', ['post' => $post]
             );
+        } else {
+            return redirect('posts')->with('message', 'You are not authorised for this action');
         }
-        return redirect()->action(
-            'PostController@edit', ['post' => $post]
-        );
     }
 }
