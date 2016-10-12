@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 use Auth;
 use App\User;
 use Intervention\Image\Facades\Image;
-use \PDF;
-
+//use Barryvdh\DomPDF;
+use PDF;
 
 class UserController extends Controller
 {
@@ -79,16 +79,13 @@ class UserController extends Controller
 
     public function pdf_create()
     {
-//        $dompdf = new DOMPDF();
-//        $dompdf->set($paper,$orientation);
-//        $dompdf->load_html($html);
-//        $dompdf->render();
-//        $dompdf->stream($filename.".pdf");
-
-        //$pdf = PDF::loadView('profile.edit',$data);
-        //return $pdf->download('invoice.pdf');
-
-        return PDF::loadFile(public_path() . '/myfile.html')->save('/path-to/my_stored_file.pdf')->stream('download.pdf');
+//        $pdf = App::make('dompdf.wrapper');
+//        $pdf->loadView('profile');
+//        return $pdf->stream();
+        $user = Auth::User();
+        $pdf = \PDF::loadView('about', []);
+//        return $pdf->download('invoice.pdf');
+        return $pdf->stream();
 
     }
 

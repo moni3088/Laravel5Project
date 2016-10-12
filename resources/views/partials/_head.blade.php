@@ -14,7 +14,7 @@
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 {{--Custom fonts--}}
-<link href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway" rel="stylesheet">
+{{--<link href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway" rel="stylesheet">--}}
 
 <style>
     body, li, p {
@@ -27,10 +27,6 @@
 
     h1, h2, h3 {
         font-family: 'Raleway', sans-serif;
-    }
-
-    nav > navbar-default {
-        background-color: #0d3625;
     }
 
 </style>

@@ -42,10 +42,16 @@
                     <div class="form-group">
                         {!! Form::label('about', 'About: ') !!}
                         {!! Form::textarea('about', null, ['class' => 'form-control', 'size'=>'30x5']) !!}
+
                     </div>
                     {!!Form::submit('Update', ['class'=>'btn btn-primary btn-lg btn-block'])  !!}
-                    {!!Form::submit('DownloadPDF', ['class'=>'btn btn-primary btn-lg btn-block'])  !!}
+                    <button type="button" class="btn btn-default btn-block" onclick="window.location='{{route("profile.make.pdf")}}'">PDF download</button>
+
                     {!! Form::close() !!}
+
+                    {{--{!!Form::model($user ['route'=> ['profile.make.pdf'], 'method'=>'GET'])!!}--}}
+                    {{--{!!Form::submit('DownloadPDF', ['class'=>'btn btn-primary btn-lg btn-block'])  !!}--}}
+                    {{--{!! Form::close() !!}--}}
 
                     @include('errors.list')
                     {{--{{var_dump($errors)}}--}}
