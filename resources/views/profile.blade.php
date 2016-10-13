@@ -30,10 +30,38 @@
                                     Browse {!! Form::file('avatar', ['class' => 'btn btn-file', 'style' => 'display:none'])!!}
                                 </label>
                             </div>
-                            {!! Form::submit('Submit picture', ['class'=>'btn btn-primary btn-md btn-block', 'style' => 'margin-top: 15px;']) !!}
+                            {!! Form::submit('Submit picture', ['class'=>'btn btn-primary btn-md btn-block', 'style' => 'margin-top: 15px;', 'onclick' => 'loadingStatus()']) !!}
                         </div>
                     </div>
                     {!! Form::close() !!}
+
+                    <script>
+                        function loadingStatus() {
+                            var alert1 = document.getElementById("alert1");
+                            if (alert1 === null) {
+                                document.getElementById("loading").innerHTML = "<div class='alert alert-info'>Loading. Please wait while your image is being processed</div>";
+                            }
+                            alert1.innerHTML = "<div class='alert alert-info'>Loading. Please wait while your image is being processed</div>";
+                        }
+                    </script>
+
+                    <div id="loading"></div>
+
+                    @if(Session::has('message'))
+                        @if(Session::get('message') === 'No image is selected.')
+                            <div id="alert1">
+                                <div class="alert alert-danger">
+                                    {{ Session::get('message') }}
+                                </div>
+                            </div>
+                        @else
+                            <div id="alert1">
+                                <div class="alert alert-success">
+                                    {{ Session::get('message') }}
+                                </div>
+                            </div>
+                        @endif
+                    @endif
 
                     <hr>
                     {!!Form::model($user, ['route'=> ['profile.update', $user->id], 'method'=>'PATCH'])!!}
@@ -56,17 +84,6 @@
                     @include('errors.list')
                     {{--{{var_dump($errors)}}--}}
 
-                    @if(Session::has('message'))
-                        @if(Session::get('message') === 'No image is selected.')
-                            <div class="alert alert-danger">
-                                {{ Session::get('message') }}
-                            </div>
-                        @else
-                            <div class="alert alert-success">
-                                {{ Session::get('message') }}
-                            </div>
-                        @endif
-                    @endif
                 </div>
             </div>
         </div>

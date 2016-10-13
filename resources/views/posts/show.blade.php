@@ -8,6 +8,20 @@
     <li><a href="/contact">Contact</a></li>
 @endsection
 
+<style>
+    #img-invisible {
+        display: none;
+    }
+
+    #postImg:hover #img-invisible {
+        display: block;
+    }
+
+    #postImg:hover #img-visible {
+        display: none;
+    }
+</style>
+
 @section('content')
 
     <div class="row">
@@ -17,7 +31,7 @@
                 <hr>
             </div>
             {!!Form::model($post, ['route'=> ['posts.destroy',$post->id], 'method'=>'DELETE'])!!}
-            <div class="col-md-2 text-muted" style="text-transform: uppercase; border-right: solid lightgray 0.5px;">
+            <div class="col-md-2 text-muted" style="text-transform: uppercase; border-right: solid lightgray 0.5px; ">
                 <p>Posted by: <span style="font-style: italic">{{$author}}</span></p>
                 <p>Created at:</p>
                 <p>|{{$post->created_at}}|</p>
@@ -33,8 +47,14 @@
             <div class="col-md-10" style=" ">
                 <div class="post">
                     @if(isset($post->image))
-                        <img src="/uploads/PostImages/{{$post->image}}" class="img-rounded img-responsive"
-                             style=" padding: 0px 0 20px 0;">
+                        <div id="postImg">
+                            <img src="/uploads/PostImages/{{$post->image}}" id="img-visible"
+                                 class="img-rounded img-responsive"
+                                 style=" padding: 0px 0 20px 0;">
+                            <img src="/uploads/PostImages/{{'pixelated_' . $post->image}}" id="img-invisible"
+                                 class="img-rounded img-responsive"
+                                 style=" padding: 0px 0 20px 0;">
+                        </div>
                     @endif
 
                     {{--nl2br() function helps display the paragraph line breaks otherwise line breaks are not displayed--}}
@@ -46,8 +66,6 @@
                 <hr>
             </div>
         </div>
-
-
     </div>
 
 @endsection

@@ -1,0 +1,484 @@
+body, html {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	margin: 0 auto;
+	padding: 0;
+	border: 0;
+	background-color: #404040;
+	height: 100%;
+	width: 100%;
+	font-family: OpenSans;
+	font-weight: 300;
+}
+
+*, *:before, *:after {
+	-webkit-box-sizing: inherit;
+	-moz-box-sizing: inherit;
+	box-sizing: inherit;
+  }
+
+@font-face {
+    font-family: OpenSans;
+    src: url(../fonts/OpenSans-Light.ttf);
+}
+
+@font-face {
+    font-family: LoveloBlack;
+    src: url(../fonts/LoveloBlack.ttf);
+}
+
+.bg {
+	background-color: #555555;
+}
+
+.thumb {
+    margin-bottom: 30px;
+}
+
+.thumbnail {
+    display: block;
+    padding: 5px;
+    margin-bottom: 20px;
+    line-height: 1.42857143;
+    background-color: unset;
+    border: none;
+    border-radius: 2px;
+}
+
+.virsus li, .virsus2 li {
+    position: relative;
+}
+
+.virsus > li > a, .virsus2 > li > a{
+	font-family: LoveloBlack;
+}
+
+.virsus li:hover ul, .virsus2 li:hover ul { 
+    opacity: 1;
+    visibility: visible;
+    border-radius: 0 0 5px 5px;
+}
+
+.drop-ul {
+    float: left;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    visibility: hidden;
+    z-index: 1;
+    -webkit-transition: all .25s ease;
+       -moz-transition: all .25s ease;
+        -ms-transition: all .25s ease;
+         -o-transition: all .25s ease;
+            transition: all .25s ease;
+    background: #252525;
+    list-style: none;
+    color: white;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.drop-ul2 {
+	opacity: 0;
+	visibility: hidden;
+	list-style: none;
+	padding: 0;
+	position: relative;
+	right: 2000px;
+	margin: 0;
+    -webkit-transition: all .25s ease;
+       -moz-transition: all .25s ease;
+        -ms-transition: all .25s ease;
+         -o-transition: all .25s ease;
+            transition: all .25s ease;
+}
+
+.drop-ul li {
+	transition: all 0.3s ease;
+	padding: 15px 0;
+	border-bottom: solid 0.5px grey;
+}
+
+.drop-ul > li:hover  {
+	background-color: #353535;
+}
+
+.drop-ul > li:hover a {
+	background-color: #353535 !important;
+}
+
+
+.navigation, .navigation2 {
+	/*width: 100%;*/
+	padding: 6em 0 0.5em 0;
+	text-align: center;
+	border: 0;
+	background-color: none;
+	margin: 0 auto;
+	height: 25%;
+	z-index: 30; 
+}
+
+.navigation2 {
+	padding: 3.5em 0 0.5em 0;
+	height: 20vh;
+	top: 0;
+	background-color: #404040;
+	width: 100%;
+	position: fixed;
+}
+
+.virsus, .virsus2 {
+	margin-left: 1.5em;
+	display: inline-block;
+	float: none;
+	width: auto;
+
+}
+
+.virsus2 {
+	margin-left: 1em;
+}
+
+.virsus li, .virsus2 li {
+	margin-right: 1.5em;
+	width: 10em;
+	text-align: center;
+	cursor: pointer;
+}
+
+.virsus2 li {
+	margin-right: 1em;
+	width: 10em;
+}
+
+.virsus li img, .virsus2 li img{
+    width: 6em;
+	height: auto;
+    display: block;
+    margin: 0 auto;
+    padding-bottom: 0.5em;
+	transition: all 0.5s;
+}
+
+.virsus2 li img {
+	width: 5em;
+}
+
+.virsus li a, .virsus2 li a {
+	padding: 5% 0;
+	color: white;
+	width: 100%;
+	transition: all 0.5s;
+	background-color: transparent;
+}
+
+.virsus li:hover a, .virsus2 li:hover a{
+	background-color: #252525;
+	/*border: 1px solid white;*/
+	/*border: 5px solid white;*/
+	border-radius: 5px;
+
+}
+
+.virsus li:hover img, .virsus2 li:hover img{
+	opacity: 0.7;
+}
+
+
+.nav>li>a:focus, .nav>li>a:hover {
+	/*Kad nebutu baltas bg paspaudus ant menu mygtku*/
+    text-decoration: none;
+    background-color: #252525;
+}
+
+#main {
+	background: url(../img/main2.png) no-repeat;
+	-webkit-background-size:initial;
+	-moz-background-size:initial;
+	-o-background-size:initial;
+	/*background-size: 1400px;*/
+	background-position:center;
+	padding: 0; 
+	margin: 0; 
+	height: 65%;
+
+}
+
+#main2 {
+	background-color: #a5a5a5;
+	padding: 20vh 0 5vh 0; /*kad*/
+}
+
+#apaciaMain {
+
+}
+
+.vert {
+	display: table-cell;
+	vertical-align: middle;
+	/*background-color: orange;*/
+	width: 100%;
+}
+
+#smalltech {
+	width: 100px;
+	height: auto;
+		/*background-color: black;*/
+}
+
+.apacia, .apacia2 {
+	margin-left: 2em; 
+}
+
+.apacia2 {
+	position: absolute;
+	float: none;
+	margin: 0 0 0 2em;
+}
+
+.apacia2 > a {
+    max-width: 30px;
+    height: auto;
+    display: block;
+}
+
+.apacia li, .apacia2 li {
+	margin-right: 2em;
+	width: auto;
+	cursor: pointer;
+}
+
+.apacia li:hover, .apacia2 li:hover {
+	transition: 1s all;
+	opacity: 0.3;
+}
+
+.apacia li img, .apacia2 li img{
+    max-width: 27px;
+    height: auto;
+    display: block;
+}
+
+
+@media only screen and (max-width: 1440px) {
+
+	#main {
+		background: url(../img/main2.png) no-repeat;
+		-webkit-background-size:contain;
+		-moz-background-size:contain;
+		-o-background-size:contain;
+		background-size: 1100px;
+		background-position:center;
+		padding: 0; 
+		margin: 0; 
+		height: 65%;
+	}
+
+.navigation2 {
+	padding: 3.5em 0 0.5em 0;
+	height: 20%;
+}
+
+.virsus, .virsus2 {
+	margin-left: 1.5em;
+	padding-top: 1em;
+	display: inline-block;
+	float: none;
+	/*vertical-align: top;*/
+	width: auto;
+
+}
+
+.virsus2 {
+	padding-top: 0em;
+	margin-left: 1em;
+}
+
+.virsus li, .virsus2 li {
+	margin-right: 1.5em;
+	width: 10em;
+	text-align: center;
+	cursor: pointer;
+}
+
+.virsus2 li {
+	margin-right: 1em;
+	width: 10em;
+}
+
+.virsus li img, .virsus2 li img {
+    width: 6em;
+	height: auto;
+    display: block;
+    margin: 0 auto;
+    padding-bottom: 0.5em;
+	transition: all 0.5s;
+}
+
+.virsus2 li img {
+	width: 5em;
+}
+
+.virsus li a, .virsus2 li a {
+	padding: 5% 0;
+	color: white;
+	width: 100%;
+	transition: all 0.5s;
+}
+
+	}
+
+@media only screen and (max-width: 1080px) {
+	.navbar-nav>li {
+		float: left;
+	}
+
+
+	body {
+		background: url(../img/bg_mobile.png) no-repeat;
+		background-size: cover;
+	}
+
+	#main {
+		background: url(../img/main_mobile.png) no-repeat;
+		-webkit-background-size:900px;
+		-moz-background-size:900px;
+		-o-background-size:900px;
+		background-size: 900px;
+		background-position:center;
+	}
+
+	.navigation2 {
+		padding: 3.5em 0 0.5em 0;
+		height: 20%;
+	}
+
+	.virsus, .virsus2 {
+		margin-left: 0.5em;
+		padding-top: 1.5em;
+		display: inline-block;
+		float: none;
+		/*vertical-align: top;*/
+		width: auto;
+
+	}
+
+	.virsus2 {
+		padding-top: 0em;
+		margin-left: 1em;
+	}
+
+	.virsus li, .virsus2 li {
+		margin-right: 0.8em;
+		width: 8em;
+		text-align: center;
+		cursor: pointer;
+
+	}
+
+	.virsus2 li {
+		margin-right: 1em;
+		width: 8em;
+	}
+
+	.virsus li img, .virsus2 li img {
+	    width: 5em;
+		height: auto;
+	    display: block;
+	    margin: 0 auto;
+	    padding-bottom: 0.5em;
+		transition: all 0.5s;
+	}
+
+	.virsus2 li img {
+		width: 5em;
+	}
+
+	.virsus li a, .virsus2 li a {
+		padding: 5% 0;
+		color: white;
+		width: 100%;
+		transition: all 0.5s;
+	}
+
+	#apaciaMain {
+		margin: 0 auto; 
+	}
+
+
+}
+
+@media only screen and (max-width: 900px) {
+
+	#main {
+		background: url(../img/main_mobile.png) no-repeat;
+		-webkit-background-size: contain;
+		-moz-background-size: contain;
+		-o-background-size: contain;
+		background-size: contain;
+		background-position:center;
+	}
+
+
+@media only screen and (max-width: 576px) {
+
+.slept {
+	visibility: hidden;
+	opacity: 0;
+}
+
+.apacia2 {
+	display: none;
+}
+
+.drop-ul{
+}
+
+.virsus li:hover a, .virsus2 li:hover a{
+	background-color: none;
+	border: 0;
+	border-radius: 5px;
+
+}
+
+
+.drop-ul2{
+top: 153px;
+right: 0;
+background-color: #252525;
+}
+
+.drop-ul2 li{
+	border-bottom: 1px solid gray;
+	border: none;
+	font-family: LoveloBlack;
+	padding: 30px 0;
+}
+
+.drop-ul2 li a{
+background-color: none;
+}
+
+.virsus2 {
+
+}
+
+.prMenu {
+	position: relative;
+	left: 35%;
+}
+
+.dropdown {
+	/*Pirmas li elem in meniu*/
+	font-family: LoveloBlack;
+}
+
+.prMenu:hover {
+	position: relative;
+	left: 35%;
+}
+
+}

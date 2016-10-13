@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Auth;
 use App\User;
 use Intervention\Image\Facades\Image;
@@ -45,7 +46,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
         $this->validate($request, [
-            'nickname' => 'required|min:5|max:15|unique:users,nickname,' . $user->id,
+            'nickname' => 'required|min:5|max:10|unique:users,nickname,' . $user->id,
             'email' => 'unique:users,email,' . $user->id
         ]);
 
@@ -57,6 +58,10 @@ class UserController extends Controller
     public function update_avatar(Request $request)
     {
         if ($request->hasFile('avatar')) {
+            $user = Auth::user();
+            $filename = $user->avatar;
+            Storage::delete('/public/uploads/avatars/' . $filename);
+
             $avatar = $request->file('avatar');
 
             $circle_mask = Image::canvas(500, 500, 'rgba(0, 0, 0, 0)');
@@ -65,9 +70,10 @@ class UserController extends Controller
             });
 
             $filename = time() . '.' . 'png';
-            Image::make($avatar)->fit(250)->encode('png')->mask($circle_mask)->save(public_path('/uploads/avatars/' . $filename));
+            Image::make($avatar)->fit(250)->encode('png')->mask($circle_mask)
+                ->insert(public_path('/img/watermark_new.png'), 'center')->save(public_path('/uploads/avatars/' . $filename));
 
-            $user = Auth::user();
+//            $user = Auth::user();
             $user->avatar = $filename;
             $user->save();
 

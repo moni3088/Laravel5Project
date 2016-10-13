@@ -18,6 +18,21 @@ class PostController extends Controller
     }
 
     /**
+     * @param $request
+     * @param $post
+     */
+    public function setImage($request, $post)
+    {
+        $postImg = $request->file('postImg');
+        $filename = time() . '.' . 'png';
+        $filename2 = 'pixelated_' . $filename;
+        $path = public_path('uploads/PostImages/');
+        Image::make($postImg)->fit(700, 300)->encode('png')->insert(public_path('/img/watermark_new.png'), 'bottom-right')->save($path . $filename);
+        Image::make($path . $filename)->pixelate(8)->save($path . $filename2);
+        $post->image = $filename;
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -54,10 +69,7 @@ class PostController extends Controller
         $post->user_id = Auth::id(); //Gets and sets the current active user's id
 
         if ($request->hasFile('postImg')) {
-            $postImg = $request->file('postImg');
-            $filename = time() . '.' . 'png';
-            Image::make($postImg)->fit(700, 300)->encode('png')->save(public_path('uploads/PostImages/' . $filename));
-            $post->image = $filename;
+            $this->setImage($request, $post);
         }
 
         $post->save();
@@ -105,7 +117,7 @@ class PostController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified resource    in storage.
      *
      * @param  \Illuminate\Http\Request $request
      * @param  int $id
@@ -114,12 +126,13 @@ class PostController extends Controller
     public function update(CreatePostRequest $request, $id)
     {
         $post = Post::findOrFail($id);
-
         if ($request->hasFile('postImg')) {
-            $postImg = $request->file('postImg');
-            $filename = time() . '.' . 'png';
-            Image::make($postImg)->fit(700, 300)->encode('png')->save(public_path('uploads/PostImages/' . $filename));
-            $post->image = $filename;
+            if ($post->image != null && $post->image != 'Default.jpg') {
+                $filename = $post->image;
+                Storage::delete('/public/uploads/PostImages/' . $filename);
+                Storage::delete('/public/uploads/PostImages/' . 'pixelated_' . $filename);
+            }
+            $this->setImage($request, $post);
         }
 
         $post->update($request->all());
@@ -143,6 +156,7 @@ class PostController extends Controller
             if ($post->image != null) {
                 $filename = $post->image;
                 Storage::delete('/public/uploads/PostImages/' . $filename);
+                Storage::delete('/public/uploads/PostImages/' . 'pixelated_' . $filename);
             }
             $post->delete();
             return redirect()->route('posts.index');
@@ -157,6 +171,7 @@ class PostController extends Controller
      */
     public function deleteImage($id)
     {
+        //I call this method from edit.blade when deleting an image directly
         $user = Auth::user();
         $post = Post::find($id);
 
@@ -164,15 +179,16 @@ class PostController extends Controller
             if ($post->image != null) {
                 $filename = $post->image;
                 Storage::delete('/public/uploads/PostImages/' . $filename);
+                Storage::delete('/public/uploads/PostImages/' . 'pixelated_' . $filename);
                 $post->image = null;
                 $post->save();
                 return redirect()->action(
-                    'PostController@show', ['id' => $id]
-                );
+                    'PostController@edit', ['id' => $id]
+                )->withMessage('The image has been deleted');
             }
             return redirect()->action(
                 'PostController@edit', ['post' => $post]
-            );
+            )->withMessage('There is no image');
         } else {
             return redirect('posts')->with('message', 'You are not authorised for this action');
         }
