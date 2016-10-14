@@ -24,7 +24,7 @@
         line-height: 1.5;
     }
 
-    h1, h2, h3 {
+    h1, h2 {
         font-size: 3em;
     }
 
