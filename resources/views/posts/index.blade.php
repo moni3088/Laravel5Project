@@ -25,9 +25,9 @@
                         <h3 style="">{{$post->title}}</h3>
                         <p class="text-muted">
                             Posted by: <span
-                                    style="font-style: italic">{{App\User::where('id', $post->user_id)->first()->nickname}}</span>
+                                    style="font-style: italic">{{App\User::where('id', $post->user_id)->first()->name}}
+                                - {{App\User::where('id', $post->user_id)->first()->nickname}}</span>
                         </p>
-                        {{--<p style="font-size: 1.2em">{{str_limit($post->body, 50)}}</p>--}}
                         <p style="font-size: 1.2em">{!! str_limit(nl2br(e($post->body)), 50) !!}</p>
 
                         <a href="{{url("/posts", $post->id)}}" class="btn btn-primary this" style="margin-top: 10px;">Read

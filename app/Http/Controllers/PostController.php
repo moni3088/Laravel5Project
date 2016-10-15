@@ -91,11 +91,13 @@ class PostController extends Controller
         $user = Auth::user();
         $post = Post::findOrFail($id);
         $author = User::where('id', $post->user_id)->first()->nickname; //gets the author's nickname
-
+        $name = User::where('id', $post->user_id)->first()->name;
         return view('posts.show')
             ->with(compact('post'))
             ->with(compact('user'))
-            ->with(compact('author'));
+            ->with(compact('author'))
+            ->with(compact('name'))
+            ;
     }
 
     /**
@@ -109,7 +111,7 @@ class PostController extends Controller
         $post = Post::findOrFail($id);
         $user = Auth::user();
 
-        if ($user->can('update', $post)) {
+        if ($user->can('update', $post) || $user->isAdmin()) {
             return view('posts.edit', compact('post'));
         } else {
             return redirect('posts')->with('message', 'You are not authorised for this action');
@@ -152,7 +154,7 @@ class PostController extends Controller
     {
         $user = Auth::user();
         $post = Post::find($id);
-        if ($user->can('delete', $post)) {
+        if ($user->can('delete', $post) || $user->isAdmin()) {
             if ($post->image != null) {
                 $filename = $post->image;
                 Storage::delete('/public/uploads/PostImages/' . $filename);
@@ -166,6 +168,9 @@ class PostController extends Controller
     }
 
     /**
+     *
+     *
+     *
      * @param $id
      * @return string
      */
@@ -175,7 +180,7 @@ class PostController extends Controller
         $user = Auth::user();
         $post = Post::find($id);
 
-        if ($user->can('delete', $post)) {
+        if ($user->can('delete', $post) || $user->isAdmin()) {
             if ($post->image != null) {
                 $filename = $post->image;
                 Storage::delete('/public/uploads/PostImages/' . $filename);

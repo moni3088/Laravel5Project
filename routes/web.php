@@ -13,8 +13,17 @@
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index');
+Route::get('/', function () {
+    if (Auth::user()) {
+        return redirect('posts');
+    } else {
+        return redirect('login');
+    }
+});
+
 Route::get('contact', 'PagesController@getContact');
+Route::post('contact', 'PagesController@sendContact');
+
 Route::get('about', 'PagesController@getAbout');
 
 Route::get('profile', 'UserController@edit')->name('profile.edit');
@@ -22,6 +31,11 @@ Route::post('profile', 'UserController@update_avatar')->name('profile.update_ava
 Route::patch('profile/{id}', 'UserController@update')->name('profile.update');
 
 //Route::get('profile', 'UserController@pdf_create')->name('make.pdf');
+
+Route::group(['middleware' => 'admin', 'auth'], function () {
+    Route::get('admin', 'AdminController@index');
+    Route::patch('admin', 'AdminController@update')->name('admin.update');
+});
 
 Route::resource('posts', 'PostController');
 Route::get('posts/{id}/delete', 'PostController@deleteImage')->name('posts.imageDelete');

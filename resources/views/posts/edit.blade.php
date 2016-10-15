@@ -41,7 +41,7 @@
                     {!! Form::close() !!}
 
                     {!!Form::model($post, ['route'=> ['posts.destroy',$post->id], 'method'=>'DELETE'])!!}
-                        {!!Form::submit('Delete post', ['class'=>'btn btn-danger btn-lg btn-block', 'style' => 'margin-top:10px;'])  !!}
+                    {!!Form::submit('Delete post', ['class'=>'btn btn-danger btn-lg btn-block', 'style' => 'margin-top:10px;'])  !!}
                     {!! Form::close() !!}
 
                     @include('errors.list')

@@ -11,19 +11,33 @@
 |
 */
 
-$factory->define(App\User::class, function (Faker\Generator $faker) {
-    static $password;
-
+$factory->define(App\Post::class, function ($faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
+        'title' => $faker->title,
+        'body' => $faker->paragraph,
+        'user_id' => function () {
+            return factory(App\User::class)->create()->id;
+        },
+        'created_at' => date("Y-m-d H:i:s"),
+        'updated_at' => date("Y-m-d H:i:s"),
+    ];
+});
+
+$factory->define(App\User::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->userName,
+        'nickname' => $faker->name,
+        'email' => $faker->email,
+        'password' => bcrypt(str_random(10)),
         'remember_token' => str_random(10),
     ];
 });
 
-$factory->defineAs(App\User::class, 'admin', function ($faker) use ($factory) {
-    $user = $factory->raw(App\User::class);
-
-    return array_merge($user, ['admin' => true]);
+$factory->state(App\User::class, 'admin', function ($faker) {
+    return [
+        'name' => 'admin',
+        'password' => bcrypt('admin'),
+        'email' => 'admin@admin.com',
+        'admin' => true,
+    ];
 });

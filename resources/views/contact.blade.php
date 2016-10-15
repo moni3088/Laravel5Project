@@ -14,24 +14,31 @@
         <div class="col-md-12">
             <h1>Contact Me</h1>
             <hr>
-            <form>
-                <div class="form-group">
-                    <label name="email">Email:</label>
-                    <input id="email" name="email" class="form-control">
-                </div>
+            {!! Form::open(['action' => 'PagesController@sendContact']) !!}
+            <div class="form-group">
+                {!! Form::label('email', 'E-mail: ') !!}
+                {!! Form::text('email', null, ['class' => 'form-control']) !!}
+            </div>
+            <div class="form-group">
+                {!! Form::label('subject', 'Subject: ') !!}
+                {!! Form::text('subject', null, ['class' => 'form-control']) !!}
+            </div>
+            <div class="form-group">
+                {!! Form::label('message', 'Message: ') !!}
+                {!! Form::textarea('message', null, ['class' => 'form-control', 'size'=>'30x5']) !!}
+            </div>
+            {!!Form::submit('Send message', ['class'=>'btn btn-success'])  !!}
+            {!! Form::close() !!}
 
-                <div class="form-group">
-                    <label name="subject">Subject:</label>
-                    <input id="subject" name="subject" class="form-control">
-                </div>
+            @include('errors.list')
+            {{--{{var_dump($errors)}}--}}
 
-                <div class="form-group">
-                    <label name="message">Message:</label>
-                    <textarea id="message" name="message" class="form-control">Type your message here...</textarea>
-                </div>
+            @if (session('message'))
+                <script>
+                    alert('{{ session('message') }}');
+                </script>
+            @endif
 
-                <input type="submit" value="Send Message" class="btn btn-success">
-            </form>
         </div>
     </div>
 

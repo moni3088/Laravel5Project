@@ -26,6 +26,9 @@
                         <ul class="dropdown-menu">
                             <li><a href="/profile">Edit profile</a></li>
                             <li><a href="{{ route("posts.create") }}">Create post</a></li>
+                            @if(Auth::user()->isAdmin())
+                                <li><a href="/admin">Admin panel</a></li>
+                            @endif
                             <li role="separator" class="divider"></li>
                             <li>
                             <li>
