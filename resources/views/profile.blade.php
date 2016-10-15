@@ -3,9 +3,9 @@
 @section('title', "| Profile")
 
 @section('navbuttons')
-    <li><a href="/posts">Home</a></li>
-    <li><a href="/about">About</a></li>
-    <li><a href="/contact">Contact</a></li>
+    <li><a href="{{URL::to('posts')}}">Home</a></li>
+    <li><a href="{{URL::to('about')}}">About</a></li>
+    <li><a href="{{URL::to('contact')}}">Contact</a></li>
 @endsection
 
 @section('content')
@@ -22,7 +22,7 @@
                         <hr>
                         <div class="media" style="">
                             <div class="media-left ">
-                                <img src="/uploads/avatars/{{$user->avatar}}" class="media-object">
+                                <img src="uploads/avatars/{{$user->avatar}}" class="media-object">
                             </div>
                             <div style="margin-left: 10px;" class="media-body media-middle">
                                 {!! Form::label('picture', 'Update profile picture: ') !!}

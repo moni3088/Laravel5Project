@@ -3,9 +3,9 @@
 @section('title', "| About")
 
 @section('navbuttons')
-    <li><a href="/posts">Home</a></li>
-    <li class="active"><a href="/about">About</a></li>
-    <li><a href="/contact">Contact</a></li>
+    <li><a href="{{URL::to('posts')}}">Home</a></li>
+    <li class="active"><a href="{{URL::to('about')}}">About</a></li>
+    <li><a href="{{URL::to('contact')}}">Contact</a></li>
 @endsection
 
 @section('content')

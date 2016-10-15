@@ -3,9 +3,9 @@
 @section('title', "| Contact")
 
 @section('navbuttons')
-    <li><a href="/posts">Home</a></li>
-    <li><a href="/about">About</a></li>
-    <li class="active"><a href="/contact">Contact</a></li>
+    <li><a href="posts">Home</a></li>
+    <li><a href="about">About</a></li>
+    <li class="active"><a href="contact">Contact</a></li>
 @endsection
 
 @section('content')
