@@ -78,9 +78,7 @@
                         {!! Form::textarea('about', null, ['class' => 'form-control', 'size'=>'30x5']) !!}
                     </div>
                     {!!Form::submit('Update', ['class'=>'btn btn-primary btn-lg btn-block'])  !!}
-                    {!!Form::submit('DownloadPDF', ['class'=>'btn btn-primary btn-lg btn-block'])  !!}
                     {!! Form::close() !!}
-
                     @include('errors.list')
                     {{--{{var_dump($errors)}}--}}
 
