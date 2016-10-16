@@ -131,8 +131,8 @@ class PostController extends Controller
         if ($request->hasFile('postImg')) {
             if ($post->image != null && $post->image != 'Default.jpg') {
                 $filename = $post->image;
-                Storage::delete(public_path('/uploads/PostImages/' . $filename));
-                Storage::delete(public_path('/uploads/PostImages/' . 'pixelated_' . $filename));
+                Storage::delete('/public/uploads/PostImages/' . $filename);
+                Storage::delete('/public/uploads/PostImages/' . 'pixelated_' . $filename);
             }
             $this->setImage($request, $post);
         }
@@ -157,8 +157,8 @@ class PostController extends Controller
         if ($user->can('delete', $post) || $user->isAdmin()) {
             if ($post->image != null) {
                 $filename = $post->image;
-                Storage::delete(public_path('/uploads/PostImages/' . $filename));
-                Storage::delete(public_path('/uploads/PostImages/' . 'pixelated_' . $filename));
+                Storage::delete('/public/uploads/PostImages/' . $filename);
+                Storage::delete('/public/uploads/PostImages/' . 'pixelated_' . $filename);
             }
             $post->delete();
             return redirect()->route('posts.index');
@@ -183,8 +183,8 @@ class PostController extends Controller
         if ($user->can('delete', $post) || $user->isAdmin()) {
             if ($post->image != null) {
                 $filename = $post->image;
-                Storage::delete(public_path('/uploads/PostImages/' . $filename));
-                Storage::delete(public_path('/uploads/PostImages/' . 'pixelated_' . $filename));
+                Storage::delete('/public/uploads/PostImages/' . $filename);
+                Storage::delete('/public/uploads/PostImages/' . 'pixelated_' . $filename);
                 $post->image = null;
                 $post->save();
                 return redirect()->action(
