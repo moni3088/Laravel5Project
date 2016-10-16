@@ -21,8 +21,6 @@ class UrlController extends Controller
 
         $users =DB::table('users')->select('id','name', 'nickname','email')->get()->toArray();
         $content =DB::table('posts')->select('id','user_id', 'title','body as post')->get()->toArray();
-           // dd($users);
-       // return view('user.index', compact($users));
         return Response::json(array('user'=>$users,
         'Here come the posts: ','post'=>$content));
     }

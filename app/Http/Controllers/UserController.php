@@ -85,7 +85,7 @@ class UserController extends Controller
     public function pdf_create()
     {
         $pdf = \PDF::loadView('about', []);
-        return $pdf->download('pdf.about');
+        return $pdf->download('about.pdf');
     }
 
 

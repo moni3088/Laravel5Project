@@ -13,7 +13,7 @@
 
 $factory->define(App\Post::class, function ($faker) {
     return [
-        'title' => $faker->title,
+        'title' => str_limit($faker->paragraph, 20),
         'body' => $faker->paragraph,
         'user_id' => function () {
             return factory(App\User::class)->create()->id;

@@ -29,11 +29,11 @@
                     </div>
 
                     <div class="form-group">
-                        {!! Form::label('image', 'Add post header image: ') !!}
+                        {!! Form::label('image', 'Update post header image: ') !!}
                         {!! Form::file('postImg')!!}
                     </div>
                     <button type="button" class="btn btn-default btn-block" style="margin-bottom: 20px;"
-                            onclick="window.location='{{ route("posts.imageDelete", $post->id) }}'">Delete image
+                            onclick="window.location='{{ route("posts.imageDelete", $post->id) }}'">Delete post image
                     </button>
 
                     {!!Form::submit('Update post', ['class'=>'btn btn-primary btn-lg btn-block'])  !!}
