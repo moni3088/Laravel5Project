@@ -32,7 +32,7 @@ Route::patch('profile/{id}', 'UserController@update')->name('profile.update');
 
 //Route::get('profile', 'UserController@pdf_create')->name('make.pdf');
 Route::get('profile/PDF', 'UserController@pdf_create')->name('profile.make.pdf');
-Route::group(array('prefix' => 'api/group1', 'before' => 'auth.basic'), function() {
+Route::group(array('prefix' => 'api/group1', 'before' => 'auth.basic'), function () {
     Route::resource('seeUsers', 'UrlController');
 });
 

@@ -10,7 +10,7 @@
 
 @section('jumbotron')
     <div class="jumbotron"
-         style="color: #ecf0f1; background: #e74c3c url('img/bg11.png');">
+         style="color: #ecf0f1; background: #e74c3c url({{asset('img/bg11.png')}});">
         <h1 class="text-center">Your favorite recipe blog</h1>
         <p class="text-center">This blog is the best blog ever, you will never want to leave this website.</p>
     </div>

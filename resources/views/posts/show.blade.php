@@ -49,10 +49,10 @@
                 <div class="post">
                     @if(isset($post->image))
                         <div id="postImg">
-                            <img src="/uploads/PostImages/{{$post->image}}" id="img-visible"
+                            <img src="{{asset('uploads/PostImages/' . $post->image)}}" id="img-visible"
                                  class="img-rounded img-responsive"
                                  style=" padding: 0px 0 20px 0;">
-                            <img src="/uploads/PostImages/{{'pixelated_' . $post->image}}" id="img-invisible"
+                            <img src="{{asset('uploads/PostImages/' . 'pixelated_' . $post->image)}}" id="img-invisible"
                                  class="img-rounded img-responsive"
                                  style=" padding: 0px 0 20px 0;">
                         </div>

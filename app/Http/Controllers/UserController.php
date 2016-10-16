@@ -45,7 +45,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
         $this->validate($request, [
-            'nickname' => 'min:5|max:10|unique:users,nickname,' . $user->id,
+            'nickname' => 'min:5|max:20|unique:users,nickname,' . $user->id,
             'email' => 'required|unique:users,email,' . $user->id
         ]);
 
@@ -60,7 +60,7 @@ class UserController extends Controller
             $user = Auth::user();
             $filename = $user->avatar;
             if ($filename != 'Default.png') {
-                Storage::delete('/public/uploads/avatars/' . $filename);
+                Storage::delete(public_path('/uploads/avatars/' . $filename));
             }
             $avatar = $request->file('avatar');
 

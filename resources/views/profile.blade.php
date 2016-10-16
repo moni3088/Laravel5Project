@@ -22,7 +22,7 @@
                         <hr>
                         <div class="media" style="">
                             <div class="media-left ">
-                                <img src="uploads/avatars/{{$user->avatar}}" class="media-object">
+                                <img src="{{asset('uploads/avatars/' . $user->avatar)}}" class="media-object">
                             </div>
                             <div style="margin-left: 10px;" class="media-body media-middle">
                                 {!! Form::label('picture', 'Update profile picture: ') !!}
